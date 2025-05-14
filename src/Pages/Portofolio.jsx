@@ -13,7 +13,7 @@ import CardProject from "../components/CardProject";
 import TechStackIcon from "../components/TechStackIcon";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import Gallery from "../components/Gallery";
+import Certificate from "../components/Certificate";
 import { Code, Award, Boxes } from "lucide-react";
 
 // Separate ShowMore/ShowLess button component
@@ -119,9 +119,9 @@ export default function FullWidthTabs() {
   const theme = useTheme();
   const [value, setValue] = useState(0);
   const [projects, setProjects] = useState([]);
-  const [gallery, setGallery] = useState([]);
+  const [certificates, setCertificates] = useState([]);
   const [showAllProjects, setShowAllProjects] = useState(false);
-  const [showAllGallery, setShowAllGallery] = useState(false);
+  const [showAllCertificates, setShowAllCertificates] = useState(false);
   const isMobile = window.innerWidth < 768;
   const initialItems = isMobile ? 4 : 6;
 
@@ -135,11 +135,11 @@ export default function FullWidthTabs() {
   const fetchData = useCallback(async () => {
     try {
       const projectCollection = collection(db, "projects");
-      const galleryCollection = collection(db, "gallery");
+      const certificateCollection = collection(db, "certificates");
 
-      const [projectSnapshot, gallerySnapshot] = await Promise.all([
+      const [projectSnapshot, certificateSnapshot] = await Promise.all([
         getDocs(projectCollection),
-        getDocs(galleryCollection),
+        getDocs(certificateCollection),
       ]);
 
       const projectData = projectSnapshot.docs.map((doc) => ({
@@ -148,14 +148,14 @@ export default function FullWidthTabs() {
         TechStack: doc.data().TechStack || [],
       }));
 
-      const galleryData = gallerySnapshot.docs.map((doc) => doc.data());
+      const certificateData = certificateSnapshot.docs.map((doc) => doc.data());
 
       setProjects(projectData);
-      setGallery(galleryData);
+      setCertificates(certificateData);
 
       // Store in localStorage
       localStorage.setItem("projects", JSON.stringify(projectData));
-      localStorage.setItem("gallery", JSON.stringify(galleryData));
+      localStorage.setItem("certificates", JSON.stringify(certificateData));
     } catch (error) {
       console.error("Error fetching data:", error);
     }
@@ -173,12 +173,12 @@ export default function FullWidthTabs() {
     if (type === 'projects') {
       setShowAllProjects(prev => !prev);
     } else {
-      setShowAllGallery(prev => !prev);
+      setShowAllCertificates(prev => !prev);
     }
   }, []);
 
   const displayedProjects = showAllProjects ? projects : projects.slice(0, initialItems);
-  const displayedGallery = showAllGallery ? gallery : gallery.slice(0, initialItems);
+  const displayedCertificates = showAllCertificates ? certificates : certificates.slice(0, initialItems);
 
   return (
     <div className="md:px-[10%] px-[5%] w-full sm:mt-0 mt-[3rem] bg-[#FFFDF6] overflow-hidden" id="Portofolio">
@@ -278,7 +278,7 @@ export default function FullWidthTabs() {
             />
             <Tab
               icon={<Award className="mb-2 w-5 h-5 transition-all duration-300" />}
-              label="Gallery"
+              label="Certificates"
               {...a11yProps(1)}
             />
             <Tab
@@ -327,22 +327,22 @@ export default function FullWidthTabs() {
           <TabPanel value={value} index={1} dir={theme.direction}>
             <div className="container mx-auto flex justify-center items-center overflow-hidden">
               <div className="grid grid-cols-1 md:grid-cols-3 md:gap-5 gap-4">
-                {displayedGallery.map((gallery, index) => (
+                {displayedCertificates.map((certificate, index) => (
                   <div
                     key={index}
                     data-aos={index % 3 === 0 ? "fade-up-right" : index % 3 === 1 ? "fade-up" : "fade-up-left"}
                     data-aos-duration={index % 3 === 0 ? "1000" : index % 3 === 1 ? "1200" : "1000"}
                   >
-                    <Gallery ImgSertif={gallery.Img} />
+                    <Certificate ImgSertif={certificate.Img} />
                   </div>
                 ))}
               </div>
             </div>
-            {gallery.length > initialItems && (
+            {certificates.length > initialItems && (
               <div className="mt-6 w-full flex justify-start">
                 <ToggleButton
-                  onClick={() => toggleShowMore('gallery')}
-                  isShowingMore={showAllGallery}
+                  onClick={() => toggleShowMore('certificates')}
+                  isShowingMore={showAllCertificates}
                 />
               </div>
             )}
