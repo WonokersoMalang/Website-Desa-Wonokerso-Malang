@@ -3,7 +3,7 @@ import { Modal, IconButton, Box, Fade, Backdrop, Zoom, Typography } from "@mui/m
 import CloseIcon from "@mui/icons-material/Close"
 import FullscreenIcon from "@mui/icons-material/Fullscreen"
 
-const Certificate = ({ ImgSertif }) => {
+const Gallery = ({ ImgSertif }) => {
 	const [open, setOpen] = useState(false)
 
 	const handleOpen = () => {
@@ -35,12 +35,12 @@ const Certificate = ({ ImgSertif }) => {
 							transform: "translate(-50%, -50%)",
 							opacity: 1,
 						},
-						"& .certificate-image": {
+						"& .Gallery-image": {
 							filter: "contrast(1.05) brightness(1) saturate(1.1)",
 						},
 					},
 				}}>
-				{/* Certificate Image with Initial Filter */}
+				{/* Gallery Image with Initial Filter */}
 				<Box
 					sx={{
 						position: "relative",
@@ -56,9 +56,9 @@ const Certificate = ({ ImgSertif }) => {
 						},
 					}}>
 					<img
-						className="certificate-image"
+						className="Gallery-image"
 						src={ImgSertif}
-						alt="Certificate"
+						alt="Gallery"
 						style={{
 							width: "100%",
 							height: "auto",
@@ -113,7 +113,7 @@ const Certificate = ({ ImgSertif }) => {
 								fontWeight: 600,
 								textShadow: "0 2px 4px rgba(0,0,0,0.3)",
 							}}>
-							View Certificate
+							View Gallery
 						</Typography>
 					</Box>
 				</Box>
@@ -179,7 +179,7 @@ const Certificate = ({ ImgSertif }) => {
 					{/* Modal Image */}
 					<img
 						src={ImgSertif}
-						alt="Certificate Full View"
+						alt="Gallery Full View"
 						style={{
 							display: "block",
 							maxWidth: "100%",
@@ -194,4 +194,4 @@ const Certificate = ({ ImgSertif }) => {
 	)
 }
 
-export default Certificate
+export default Gallery
