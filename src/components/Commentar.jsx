@@ -8,7 +8,7 @@ import "aos/dist/aos.css";
 
 const Comment = memo(({ comment, formatDate, index }) => (
     <div 
-        className="px-4 pt-4 pb-2 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition-all group hover:shadow-lg hover:-translate-y-0.5"
+        className="px-4 pt-4 pb-2 rounded-xl bg-black/5 border border-black/10 hover:bg-black/10 transition-all group hover:shadow-lg hover:-translate-y-0.5"
         
     >
         <div className="flex items-start gap-3 ">
@@ -27,11 +27,11 @@ const Comment = memo(({ comment, formatDate, index }) => (
             <div className="flex-grow min-w-0">
                 <div className="flex items-center justify-between gap-4 mb-2">
                     <h4 className="font-medium text-black truncate">{comment.userName}</h4>
-                    <span className="text-xs text-gray-400 whitespace-nowrap">
+                    <span className="text-xs text-black/60 whitespace-nowrap">
                         {formatDate(comment.createdAt)}
                     </span>
                 </div>
-                <p className="text-gray-300 text-sm break-words leading-relaxed relative bottom-2">{comment.content}</p>
+                <p className="text-black/60 text-sm break-words leading-relaxed relative bottom-2">{comment.content}</p>
             </div>
         </div>
     </div>
@@ -39,7 +39,7 @@ const Comment = memo(({ comment, formatDate, index }) => (
 
 const CommentForm = memo(({ onSubmit, isSubmitting, error }) => {
     const [newComment, setNewComment] = useState('');
-    const [userName, setUserName] = useState('');
+    const [userName, setUserName] = useState('Anonim');
     const [imagePreview, setImagePreview] = useState(null);
     const [imageFile, setImageFile] = useState(null);
     const textareaRef = useRef(null);
@@ -78,39 +78,25 @@ const CommentForm = memo(({ onSubmit, isSubmitting, error }) => {
 
     return (
         <form onSubmit={handleSubmit} className="space-y-6">
-            <div className="space-y-2" data-aos="fade-up" data-aos-duration="1000">
-                <label className="block text-sm font-medium text-black">
-                    Name <span className="text-red-400">*</span>
-                </label>
-                <input
-                    type="text"
-                    value={userName}
-                    onChange={(e) => setUserName(e.target.value)}z
-                    placeholder="Enter your name"
-                    className="w-full p-3 rounded-xl bg-white/5 border border-white/10 text-black placeholder-gray-400 focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 transition-all"
-                    required
-                />
-            </div>
 
             <div className="space-y-2" data-aos="fade-up" data-aos-duration="1200">
                 <label className="block text-sm font-medium text-black">
-                    Message <span className="text-red-400">*</span>
+                    Pesan Anda <span className="text-red-400">*</span>
                 </label>
                 <textarea
                     ref={textareaRef}
                     value={newComment}
                     onChange={handleTextareaChange}
-                    placeholder="Write your message here..."
-                    className="w-full p-4 rounded-xl bg-white/5 border border-white/10 text-black placeholder-gray-400 focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 transition-all resize-none min-h-[120px]"
+                    placeholder="Tulis pesan anda disini..."
+                    className="w-full p-4 rounded-xl bg-black/5 border border-black/10 text-black placeholder-gray-400 focus:outline-none focus:border-indigo-600 focus:ring-2 focus:ring-indigo-500/20 transition-all resize-none min-h-[120px]"
                     required
                 />
             </div>
 
+
+
             <div className="space-y-2" data-aos="fade-up" data-aos-duration="1400">
-                <label className="block text-sm font-medium text-black">
-                    Profile Photo <span className="text-gray-400">(optional)</span>
-                </label>
-                <div className="flex items-center gap-4 p-4 bg-white/5 border border-white/10 rounded-xl">
+                <div className="flex items-center gap-0 p-0 bg-white/5 border border-white/10 rounded-xl">
                     {imagePreview ? (
                         <div className="flex items-center gap-4">
                             <img
@@ -140,27 +126,18 @@ const CommentForm = memo(({ onSubmit, isSubmitting, error }) => {
                                 accept="image/*"
                                 className="hidden"
                             />
-                            <button
-                                type="button"
-                                onClick={() => fileInputRef.current?.click()}
-                                className="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-indigo-500/20 text-indigo-400 hover:bg-indigo-500/30 transition-all border border-dashed border-indigo-500/50 hover:border-indigo-500 group"
-                            >
-                                <ImagePlus className="w-5 h-5 group-hover:scale-110 transition-transform" />
-                                <span>Choose Profile Photo</span>
-                            </button>
-                            <p className="text-center text-gray-400 text-sm mt-2">
-                                Max file size: 5MB
-                            </p>
                         </div>
                     )}
                 </div>
             </div>
 
+
+
             <button
                 type="submit"
                 disabled={isSubmitting}
                 data-aos="fade-up" data-aos-duration="1000"
-                className="relative w-full h-12 bg-gradient-to-r from-[#6366f1] to-[#a855f7] rounded-xl font-medium text-white overflow-hidden group transition-all duration-300 hover:scale-[1.02] hover:shadow-lg active:scale-[0.98] disabled:opacity-50 disabled:hover:scale-100 disabled:cursor-not-allowed"
+                className="relative w-full h-11 bg-gradient-to-r from-[#6366f1] to-[#a855f7] rounded-xl font-medium text-white overflow-hidden group transition-all duration-300 hover:scale-[1.02] hover:shadow-lg active:scale-[0.98] disabled:opacity-50 disabled:hover:scale-100 disabled:cursor-not-allowed"
             >
                 <div className="absolute inset-0 bg-white/20 translate-y-12 group-hover:translate-y-0 transition-transform duration-300" />
                 <div className="relative flex items-center justify-center gap-2">

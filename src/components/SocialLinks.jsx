@@ -73,8 +73,8 @@ const SocialLinks = () => {
   const [instagram, youtube, github, tiktok] = otherLinks;
 
   return (
-    <div className="w-full bg-gradient-to-br from-white/10 to-white/5 rounded-2xl p-6 py-8 backdrop-blur-xl">
-      <h3 className="text-xl font-semibold text-white mb-6 flex items-center gap-2">
+    <div className="w-full bg-gradient-to-br from-black/10 to-black/5 rounded-2xl p-6 py-8 backdrop-blur-xl">
+      <h3 className="text-xl font-semibold text-black/65 mb-6 flex items-center gap-2">
         <span className="inline-block w-8 h-1 bg-indigo-500 rounded-full"></span>
         Connect With Me
       </h3>
@@ -86,8 +86,8 @@ const SocialLinks = () => {
   target="_blank"
   rel="noopener noreferrer"
   className="group relative flex items-center justify-between p-4 rounded-lg 
-             bg-white/5 border border-white/10 overflow-hidden
-             hover:border-white/20 transition-all duration-500"
+             bg-black/5 border border-black/10 overflow-hidden
+             hover:border-black/20 transition-all duration-500"
 >
   {/* Hover Gradient Background */}
   <div 
@@ -114,10 +114,10 @@ const SocialLinks = () => {
 
     {/* Text Container */}
     <div className="flex flex-col">
-      <span className="text-lg font-bold pt-[0.2rem] text-gray-200 tracking-tight leading-none group-hover:text-white transition-colors duration-300">
+      <span className="text-sm font-bold pt-[0.2rem] text-black/65 tracking-tight leading-none group-hover:text-white transition-colors duration-300">
         {linkedIn.displayName}
       </span>
-      <span className="text-sm text-gray-400 group-hover:text-gray-300 transition-colors duration-300">
+      <span className="text-xs text-black/55 group-hover:text-gray-300 transition-colors duration-300">
         {linkedIn.subText}
       </span>
     </div>
@@ -149,8 +149,8 @@ const SocialLinks = () => {
               target="_blank"
               rel="noopener noreferrer"
               className="group relative flex items-center gap-3 p-4 rounded-xl 
-                       bg-white/5 border border-white/10 overflow-hidden
-                       hover:border-white/20 transition-all duration-500"
+                       bg-black/5 border border-black/10 overflow-hidden
+                       hover:border-black/20 transition-all duration-500"
             >
               <div className={`absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity duration-500
                              bg-gradient-to-r ${link.gradient}`} />
@@ -169,10 +169,10 @@ const SocialLinks = () => {
 
               {/* Text Container */}
               <div className="flex flex-col min-w-0">
-                <span className="text-sm font-bold text-gray-200 group-hover:text-white transition-colors duration-300">
+                <span className="text-sm font-bold text-black/65 group-hover:text-white transition-colors duration-300">
                   {link.displayName}
                 </span>
-                <span className="text-xs text-gray-400 truncate group-hover:text-gray-300 transition-colors duration-300">
+                <span className="text-xs text-black/55 truncate group-hover:text-gray-300 transition-colors duration-300">
                   {link.subText}
                 </span>
               </div>
@@ -198,8 +198,8 @@ const SocialLinks = () => {
               target="_blank"
               rel="noopener noreferrer"
               className="group relative flex items-center gap-3 p-4 rounded-xl 
-                       bg-white/5 border border-white/10 overflow-hidden
-                       hover:border-white/20 transition-all duration-500"
+                       bg-black/5 border border-black/10 overflow-hidden
+                       hover:border-black/20 transition-all duration-500"
             >
               <div className={`absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity duration-500
                              bg-gradient-to-r ${link.gradient}`} />
@@ -218,10 +218,10 @@ const SocialLinks = () => {
 
               {/* Text Container */}
               <div className="flex flex-col min-w-0">
-                <span className="text-sm font-bold text-gray-200 group-hover:text-white transition-colors duration-300">
+                <span className="text-sm font-bold text-black/65 group-hover:text-white transition-colors duration-300">
                   {link.displayName}
                 </span>
-                <span className="text-xs text-gray-400 truncate group-hover:text-gray-300 transition-colors duration-300">
+                <span className="text-xs text-gray-600 truncate group-hover:text-gray-300 transition-colors duration-300">
                   {link.subText}
                 </span>
               </div>
