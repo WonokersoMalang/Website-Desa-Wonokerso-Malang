@@ -16,7 +16,7 @@ const TypewriterEffect = ({ text }) => {
       } else {
         clearInterval(timer);
       }
-    }, 260);
+    }, 170);
 
     return () => clearInterval(timer);
   }, [text]);
@@ -39,7 +39,7 @@ const BackgroundEffect = () => (
 const IconButton = ({ Icon }) => (
     <div className="relative group hover:scale-110 transition-transform duration-300">
       <div className="absolute -inset-2 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-full blur opacity-30 group-hover:opacity-75 transition duration-300" />
-      <div className="relative p-2 sm:p-3 bg-white/50 backdrop-blur-sm rounded-full border border-gray-200">
+      <div className="relative p-2 sm:p-3 bg-white/50 backdrop-blur-sm rounded-full border border-gray-300">
         <Icon className="w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8 text-indigo-600" />
       </div>
     </div>
@@ -94,7 +94,7 @@ const WelcomeScreen = ({ onLoadingComplete }) => {
       <AnimatePresence>
         {isLoading && (
             <motion.div
-                className="fixed inset-0 bg-white"
+                className="fixed inset-0 bg-[#FFFDF6]"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit="exit"
@@ -123,13 +123,13 @@ const WelcomeScreen = ({ onLoadingComplete }) => {
                   >
                     <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold space-y-2 sm:space-y-4">
                       <div className="mb-2 sm:mb-4">
-                    <span data-aos="fade-right" data-aos-delay="200" className="inline-block px-2 bg-gradient-to-r from-white via-blue-100 to-purple-200 bg-clip-text text-transparent">
+                    <span data-aos="fade-right" data-aos-delay="200" className="inline-block px-2 bg-gradient-to-r from-black/100 via-black/75 to-black/55 bg-clip-text text-transparent">
                       Selamat
                     </span>{' '}
-                        <span data-aos="fade-right" data-aos-delay="400" className="inline-block px-2 bg-gradient-to-r from-white via-blue-100 to-purple-200 bg-clip-text text-transparent">
+                        <span data-aos="fade-right" data-aos-delay="400" className="inline-block px-2 bg-gradient-to-r from-black/100 via-black/75 to-black/55 bg-clip-text text-transparent">
                       Datang
                     </span>{' '}
-                        <span data-aos="fade-right" data-aos-delay="600" className="inline-block px-2 bg-gradient-to-r from-white via-blue-100 to-purple-200 bg-clip-text text-transparent">
+                        <span data-aos="fade-right" data-aos-delay="600" className="inline-block px-2 bg-gradient-to-r from-black/100 via-black/75 to-black/55 bg-clip-text text-transparent">
                       di
                     </span>
                       </div>
@@ -149,19 +149,19 @@ const WelcomeScreen = ({ onLoadingComplete }) => {
                       className="text-center"
                       variants={childVariants}
                       data-aos="fade-up"
-                      data-aos-delay="1200"
+                      data-aos-delay="1000"
                   >
                     <a
-                        href="https://www.eki.my.id"
+                        href="https://wonokerso-malang.vercel.app/"
                         className="inline-flex items-center gap-2 px-4 py-2 sm:px-6 sm:py-3 rounded-full relative group hover:scale-105 transition-transform duration-300"
                         target="_blank"
                         rel="noopener noreferrer"
                     >
-                      <div className="absolute inset-0 bg-gradient-to-r from-indigo-600/10 to-purple-600/10 rounded-full blur-md group-hover:blur-lg transition-all duration-300" />
+                      <div className="absolute inset-0 bg-gradient-to-r from-indigo-600/10 to-purple-600/10 rounded-full blur-md group-hover:blur-lg transition-all duration-900" />
                       <div className="relative flex items-center gap-2 text-lg sm:text-xl md:text-2xl">
                         <Globe className="w-4 h-4 sm:w-5 sm:h-5 text-indigo-600" />
-                        <span className="bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
-                      <TypewriterEffect text="By: PMM Kelompok 00" />
+                        <span className="bg-gradient-to-r from-indigo-900 to-purple-900 bg-clip-text text-transparent">
+                      <TypewriterEffect text="Pakisaji, Kab.Malang" />
                     </span>
                       </div>
                     </a>

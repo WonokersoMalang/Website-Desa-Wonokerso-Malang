@@ -44,7 +44,7 @@ const ToggleButton = ({ onClick, isShowingMore }) => (
       overflow-hidden
     "
   >
-    <span className="relative z-10 flex items-center gap-2">
+    <span className="text-fuchsia-950 relative z-10 flex items-center gap-2">
       {isShowingMore ? "See Less" : "See More"}
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -181,7 +181,7 @@ export default function FullWidthTabs() {
   const displayedCertificates = showAllCertificates ? certificates : certificates.slice(0, initialItems);
 
   return (
-    <div className="md:px-[10%] px-[5%] w-full sm:mt-0 mt-[3rem] bg-[#ffffff] overflow-hidden" id="Portofolio">
+    <div className="md:px-[10%] px-[5%] w-full sm:mt-0 mt-[3rem] bg-[#FFFDF6] overflow-hidden" id="Portofolio">
       {/* Header section - unchanged */}
       <div className="text-center pb-10" data-aos="fade-up" data-aos-duration="1000">
         <h2 className="inline-block text-3xl md:text-5xl font-bold text-center mx-auto text-transparent bg-clip-text bg-gradient-to-r from-[#6366f1] to-[#a855f7]">

@@ -261,8 +261,8 @@ const Komentar = () => {
                 <div className="p-2 rounded-xl bg-indigo-500/20">
                     <MessageCircle className="w-6 h-6 text-indigo-400" />
                 </div>
-                <h3 className="text-xl font-semibold text-black">
-                    Comments <span className="text-indigo-400">({comments.length})</span>
+                <h3 className="text-3xl font-bold mb-3 text-transparent bg-clip-text bg-gradient-to-r from-[#6366f1] to-[#a855f7]">
+                    Kritik & Saran <span className="text-indigo-400">({comments.length})</span>
                 </h3>
             </div>
         </div>
