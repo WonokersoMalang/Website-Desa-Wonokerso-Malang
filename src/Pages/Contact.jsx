@@ -78,6 +78,7 @@ const ContactPage = () => {
     }
   };
 
+  //ngasih spasi:lg:mt-[5%] mt-10 mb-2 sm:px-0 px-[5%]
   return (
       <>
         <div className="text-center lg:mt-[5%] mt-10 mb-2 sm:px-0 px-[5%]">
@@ -109,7 +110,8 @@ const ContactPage = () => {
         </div>
 
         <div
-            className="h-auto py-10 flex items-center justify-center px-[5%] md:px-0"
+            //For background
+            className="bg-white h-auto py-10 flex items-center justify-center px-[5%] md:px-0"
             id="Contact"
         >
           <div className="container px-[1%] grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-[45%_55%] 2xl:grid-cols-[35%_65%] gap-12">

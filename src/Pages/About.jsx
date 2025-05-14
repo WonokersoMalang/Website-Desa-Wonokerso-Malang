@@ -70,15 +70,15 @@ const ProfileImage = memo(() => (
 
 const StatCard = memo(({ icon: Icon, color, value, label, description, animation }) => (
     <div data-aos={animation} data-aos-duration={1300} className="relative group">
-      <div className="relative z-10 bg-gray-900/50 backdrop-blur-lg rounded-2xl p-6 border border-white/10 overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-2xl h-full flex flex-col justify-between">
+      <div className="relative z-10 bg-white/5 backdrop-blur-lg rounded-2xl p-6 border border-black/10 overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-2xl h-full flex flex-col justify-between">
         <div className={`absolute -z-10 inset-0 bg-gradient-to-br ${color} opacity-10 group-hover:opacity-20 transition-opacity duration-300`}></div>
 
         <div className="flex items-center justify-between mb-4">
-          <div className="w-16 h-16 rounded-full flex items-center justify-center bg-white/10 transition-transform group-hover:rotate-6">
-            <Icon className="w-8 h-8 text-white" />
+          <div className="w-16 h-16 rounded-full flex items-center justify-center bg-black/10 transition-transform group-hover:rotate-6">
+            <Icon className="w-8 h-8 text-black" />
           </div>
           <span
-              className="text-4xl font-bold text-white"
+              className="text-4xl font-bold text-black"
               data-aos="fade-up-left"
               data-aos-duration="1500"
               data-aos-anchor-placement="top-bottom"
@@ -89,7 +89,7 @@ const StatCard = memo(({ icon: Icon, color, value, label, description, animation
 
         <div>
           <p
-              className="text-sm uppercase tracking-wider text-gray-300 mb-2"
+              className="text-sm uppercase tracking-wider text-black mb-2"
               data-aos="fade-up"
               data-aos-duration="800"
               data-aos-anchor-placement="top-bottom"
@@ -98,7 +98,7 @@ const StatCard = memo(({ icon: Icon, color, value, label, description, animation
           </p>
           <div className="flex items-center justify-between">
             <p
-                className="text-xs text-gray-400"
+                className="text-xs text-black/55"
                 data-aos="fade-up"
                 data-aos-duration="1000"
                 data-aos-anchor-placement="top-bottom"
@@ -184,7 +184,7 @@ const AboutPage = () => {
 
   return (
       <div
-          className="h-auto pb-[10%] text-white overflow-hidden px-[5%] sm:px-[5%] lg:px-[10%] mt-10 sm-mt-0"
+          className="h-auto pb-[10%] bg-white text-white overflow-hidden px-[5%] sm:px-[5%] lg:px-[10%]"
           id="About"
       >
         <Header />
@@ -201,7 +201,7 @@ const AboutPage = () => {
                 Hello, I'm
               </span>
                 <span
-                    className="block mt-2 text-gray-200"
+                    className="block mt-2 text-black"
                     data-aos="fade-right"
                     data-aos-duration="1300"
                 >
@@ -210,7 +210,7 @@ const AboutPage = () => {
               </h2>
 
               <p
-                  className="text-base sm:text-lg lg:text-xl text-gray-400 leading-relaxed text-justify pb-4 sm:pb-0"
+                  className="text-base sm:text-lg lg:text-xl text-black/55 leading-relaxed text-justify pb-4 sm:pb-0"
                   data-aos="fade-right"
                   data-aos-duration="1500"
               >
