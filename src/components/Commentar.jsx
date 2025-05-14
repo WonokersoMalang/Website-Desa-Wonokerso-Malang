@@ -26,7 +26,7 @@ const Comment = memo(({ comment, formatDate, index }) => (
             )}
             <div className="flex-grow min-w-0">
                 <div className="flex items-center justify-between gap-4 mb-2">
-                    <h4 className="font-medium text-white truncate">{comment.userName}</h4>
+                    <h4 className="font-medium text-black truncate">{comment.userName}</h4>
                     <span className="text-xs text-gray-400 whitespace-nowrap">
                         {formatDate(comment.createdAt)}
                     </span>
@@ -67,7 +67,7 @@ const CommentForm = memo(({ onSubmit, isSubmitting, error }) => {
     const handleSubmit = useCallback((e) => {
         e.preventDefault();
         if (!newComment.trim() || !userName.trim()) return;
-        
+
         onSubmit({ newComment, userName, imageFile });
         setNewComment('');
         setImagePreview(null);
@@ -79,7 +79,7 @@ const CommentForm = memo(({ onSubmit, isSubmitting, error }) => {
     return (
         <form onSubmit={handleSubmit} className="space-y-6">
             <div className="space-y-2" data-aos="fade-up" data-aos-duration="1000">
-                <label className="block text-sm font-medium text-white">
+                <label className="block text-sm font-medium text-black">
                     Name <span className="text-red-400">*</span>
                 </label>
                 <input
@@ -87,13 +87,13 @@ const CommentForm = memo(({ onSubmit, isSubmitting, error }) => {
                     value={userName}
                     onChange={(e) => setUserName(e.target.value)}z
                     placeholder="Enter your name"
-                    className="w-full p-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-gray-400 focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 transition-all"
+                    className="w-full p-3 rounded-xl bg-white/5 border border-white/10 text-black placeholder-gray-400 focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 transition-all"
                     required
                 />
             </div>
 
             <div className="space-y-2" data-aos="fade-up" data-aos-duration="1200">
-                <label className="block text-sm font-medium text-white">
+                <label className="block text-sm font-medium text-black">
                     Message <span className="text-red-400">*</span>
                 </label>
                 <textarea
@@ -101,13 +101,13 @@ const CommentForm = memo(({ onSubmit, isSubmitting, error }) => {
                     value={newComment}
                     onChange={handleTextareaChange}
                     placeholder="Write your message here..."
-                    className="w-full p-4 rounded-xl bg-white/5 border border-white/10 text-white placeholder-gray-400 focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 transition-all resize-none min-h-[120px]"
+                    className="w-full p-4 rounded-xl bg-white/5 border border-white/10 text-black placeholder-gray-400 focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 transition-all resize-none min-h-[120px]"
                     required
                 />
             </div>
 
             <div className="space-y-2" data-aos="fade-up" data-aos-duration="1400">
-                <label className="block text-sm font-medium text-white">
+                <label className="block text-sm font-medium text-black">
                     Profile Photo <span className="text-gray-400">(optional)</span>
                 </label>
                 <div className="flex items-center gap-4 p-4 bg-white/5 border border-white/10 rounded-xl">
@@ -261,7 +261,7 @@ const Komentar = () => {
                 <div className="p-2 rounded-xl bg-indigo-500/20">
                     <MessageCircle className="w-6 h-6 text-indigo-400" />
                 </div>
-                <h3 className="text-xl font-semibold text-white">
+                <h3 className="text-xl font-semibold text-black">
                     Comments <span className="text-indigo-400">({comments.length})</span>
                 </h3>
             </div>

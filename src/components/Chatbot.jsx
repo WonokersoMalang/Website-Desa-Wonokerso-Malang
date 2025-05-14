@@ -53,7 +53,7 @@ const Chatbot = () => {
         }
 
         context += `\nPertanyaan: "${userMessage}"\n`;
-        context += "Jawablah menggunakan informasi di atas jika relevan, jika tidak jawab secara umum dalam bahasa Indonesia.";
+        context += "Jawablah menggunakan informasi yang ada, jika anda tidak mempunyai informasi terkait pertanyaan maka jawab secara umum(boleh diluar konteks asalkan relevan) dalam bahasa Indonesia.";
 
         return encodeURIComponent(context);
     };
@@ -178,26 +178,26 @@ const Chatbot = () => {
 
         <div
             className={`px-4 pt-4 pb-2 rounded-xl ${
-                isBot ? 'bg-indigo-500/10 border-indigo-500/20' : 'bg-white/5 border-white/10'
+                isBot ? 'bg-indigo-500/10 border-indigo-500/20' : 'bg-black/5 border-black/10'
             } hover:bg-opacity-20 transition-all group hover:shadow-lg hover:-translate-y-0.5`}
         >
             <div className="flex items-start gap-3">
                 <div
                     className={`p-2 rounded-full ${
-                        isBot ? 'bg-indigo-500/30 text-indigo-300' : 'bg-white/10 text-white/60'
+                        isBot ? 'bg-black    text-indigo-300' : 'bg-black/10 text-black/60'
                     } group-hover:bg-opacity-80 transition-colors`}
                 >
                     <UserCircle2 className="w-5 h-5" />
                 </div>
                 <div className="flex-grow min-w-0">
                     <div className="flex items-center justify-between gap-4 mb-2">
-                        <h4 className="font-medium text-white">{isBot ? 'Wonokerso Bot' : 'You'}</h4>
-                        <span className="text-xs text-gray-400 whitespace-nowrap">
+                        <h4 className="font-medium text-black">{isBot ? 'Wonokerso Bot' : 'You'}</h4>
+                        <span className="text-xs text-black/55 whitespace-nowrap">
               {formatDate(message.createdAt)}
             </span>
                     </div>
                     <p
-                        className="text-gray-300 text-sm break-words leading-relaxed relative bottom-2"
+                        className="text-black/60 text-sm break-words leading-relaxed relative bottom-2"
                         id={message.content ? undefined : `typing-${message.id}`}
                     >
                         {message.content}
@@ -208,9 +208,9 @@ const Chatbot = () => {
     );
 
     return (
-        <div className="min-h-screen bg-gray-900 flex items-center justify-center p-4">
+        <div className="min-h-screen bg-white flex items-center justify-center p-4">
             <div
-                className="max-w-2xl w-full bg-gradient-to-b from-white/10 to-white/5 rounded-2xl overflow-hidden backdrop-blur-xl shadow-xl"
+                className="max-w-7xl w-full bg-gradient-to-b from-white/10 to-white/5 rounded-2xl overflow-hidden backdrop-blur-xl shadow-xl"
                 data-aos="fade-up"
                 data-aos-duration="1000"
             >
@@ -219,7 +219,7 @@ const Chatbot = () => {
                         <div className="p-2 rounded-xl bg-indigo-500/20">
                             <MessageCircle className="w-6 h-6 text-indigo-400" />
                         </div>
-                        <h3 className="text-xl font-semibold text-white">
+                        <h3 className="text-xl font-semibold text-black">
                             Chat with Wonokerso Bot <span className="text-indigo-400">({chatMessages.length})</span>
                         </h3>
                     </div>
@@ -238,7 +238,7 @@ const Chatbot = () => {
 
                     <form onSubmit={handleSubmit} className="space-y-6">
                         <div className="space-y-2" data-aos="fade-up" data-aos-duration="1200">
-                            <label className="block text-sm font-medium text-white">
+                            <label className="block text-sm font-medium text-black">
                                 Message <span className="text-red-400">*</span>
                             </label>
                             <textarea
@@ -246,7 +246,7 @@ const Chatbot = () => {
                                 value={newMessage}
                                 onChange={handleTextareaChange}
                                 placeholder="Ask about Desa Wonokerso..."
-                                className="w-full p-4 rounded-xl bg-white/5 border border-white/10 text-white placeholder-gray-400 focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 transition-all resize-none min-h-[120px]"
+                                className="w-full p-4 rounded-xl bg-black/5 border border-black/10 text-black placeholder-gray-400 focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 transition-all resize-none min-h-[120px]"
                                 required
                             />
                         </div>
