@@ -101,18 +101,18 @@ function a11yProps(index) {
 }
 
 const techStacks = [
-  { icon: "html.svg", language: "HTML" },
-  { icon: "css.svg", language: "CSS" },
-  { icon: "javascript.svg", language: "JavaScript" },
-  { icon: "tailwind.svg", language: "Tailwind CSS" },
-  { icon: "reactjs.svg", language: "ReactJS" },
-  { icon: "vite.svg", language: "Vite" },
-  { icon: "nodejs.svg", language: "Node JS" },
-  { icon: "bootstrap.svg", language: "Bootstrap" },
-  { icon: "firebase.svg", language: "Firebase" },
-  { icon: "MUI.svg", language: "Material UI" },
-  { icon: "vercel.svg", language: "Vercel" },
-  { icon: "SweetAlert.svg", language: "SweetAlert2" },
+  { icon: "src/assets/html.svg", language: "HTML" },
+  { icon: "src/assets/css.svg", language: "CSS" },
+  { icon: "src/assets/javascript.svg", language: "JavaScript" },
+  { icon: "src/assets/tailwind.svg", language: "Tailwind CSS" },
+  { icon: "src/assets/reactjs.svg", language: "ReactJS" },
+  { icon: "src/assets/vite.svg", language: "Vite" },
+  { icon: "src/assets/nodejs.svg", language: "Node JS" },
+  { icon: "src/assets/bootstrap.svg", language: "Bootstrap" },
+  { icon: "src/assets/firebase.svg", language: "Firebase" },
+  { icon: "src/assets/MUI.svg", language: "Material UI" },
+  { icon: "src/assets/vercel.svg", language: "Vercel" },
+  { icon: "src/assets/SweetAlert.svg", language: "SweetAlert2" },
 ];
 
 export default function FullWidthTabs() {

@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { MessageCircle, UserCircle2, Loader2, AlertCircle, Send } from 'lucide-react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import villageData from './villageData.json';
+import villageData from '../assets/villageData.json';
 
 const Chatbot = () => {
     const [chatMessages, setChatMessages] = useState([]);
@@ -47,38 +47,14 @@ const Chatbot = () => {
     };
 
     const createContextPrompt = (userMessage) => {
-        let context = "Informasi Desa Wonokerso:\n";
-        for (const [key, value] of Object.entries(villageData)) {
+        let context = "Jawab:\n";
+        for (const [value] of Object.entries(villageData)) {
             context += `- ${value}\n`;
         }
-
-        context += `\nPertanyaan: "${userMessage}"\n`;
-        context += "Jawablah menggunakan informasi yang ada, jika anda tidak mempunyai informasi terkait pertanyaan maka jawab secara umum(boleh diluar konteks asalkan relevan) dalam bahasa Indonesia.";
-
+        context += `\n"${userMessage}"\n`;
+        context +=
+            "Jawablah menggunakan informasi yang ada, jika anda tidak mempunyai informasi terkait pertanyaan maka jawab secara umum(boleh diluar konteks asalkan relevan)dalam bahasa Indonesia.";
         return encodeURIComponent(context);
-    };
-
-    const typeMessage = (message, elementId, callback) => {
-        const textElement = document.getElementById(elementId);
-        if (!textElement) return;
-
-        let index = 0;
-        textElement.textContent = '';
-
-        const type = () => {
-            if (index < message.length) {
-                textElement.textContent += message[index];
-                index++;
-                const chatHistory = document.getElementById('chat-history');
-                if (chatHistory) {
-                    chatHistory.scrollTop = chatHistory.scrollHeight;
-                }
-                setTimeout(type, 10);
-            } else {
-                callback();
-            }
-        };
-        type();
     };
 
     const handleSubmit = async (e) => {
@@ -88,7 +64,6 @@ const Chatbot = () => {
         setError('');
         setIsSubmitting(true);
 
-        // Add user message
         const userMessage = {
             id: Date.now().toString(),
             content: newMessage,
@@ -96,15 +71,20 @@ const Chatbot = () => {
             createdAt: new Date().getTime(),
         };
 
-        setChatMessages(prev => [...prev, userMessage]);
+        setChatMessages((prev) => [...prev, userMessage]);
 
         try {
-            // Create context prompt
             const contextPrompt = createContextPrompt(newMessage);
+            let sessionId = sessionStorage.getItem('sessionId');
+            if (!sessionId) {
+                sessionId = crypto.randomUUID();
+                sessionStorage.setItem('sessionId', sessionId);
+            }
 
-            // API call with context
             const response = await fetch(
-                `https://api.ryzumi.vip/api/ai/chatgpt?text=${encodeURIComponent(newMessage)}&prompt=${contextPrompt}`
+                `https://fastrestapis.fasturl.cloud/aillm/gpt-4o-mini?ask=${encodeURIComponent(
+                    newMessage
+                )}&style=${contextPrompt}&sessionId=${sessionId}`
             );
 
             if (!response.ok) {
@@ -112,51 +92,26 @@ const Chatbot = () => {
             }
 
             const data = await response.json();
-            console.log('API response:', data);
-
-            // Handle response
             const botResponse = data.result || 'Maaf, tidak ada respons dari AI.';
 
-            // Add temporary bot message
-            const tempBotMessage = {
-                id: `temp-${Date.now()}`,
-                content: '',
+            const botMessage = {
+                id: Date.now().toString() + '-bot',
+                content: botResponse,
                 isBot: true,
                 createdAt: new Date().getTime(),
             };
-            setChatMessages(prev => [...prev, tempBotMessage]);
 
-            // Type the response
-            const checkAndType = () => {
-                const el = document.getElementById(`typing-${tempBotMessage.id}`);
-                if (el) {
-                    typeMessage(botResponse, `typing-${tempBotMessage.id}`, () => {
-                        setChatMessages((prevMessages) =>
-                            prevMessages.map((msg) =>
-                                msg.id === tempBotMessage.id ? { ...msg, content: botResponse } : msg
-                            )
-                        );
-                        // eslint-disable-next-line no-undef
-                        isBot(false);
-                    });
-                } else {
-                    // Coba lagi setelah 50ms
-                    setTimeout(checkAndType, 50);
-                }
-            };
-
-            checkAndType(); // panggil segera
-
+            setChatMessages((prev) => [...prev, botMessage]);
         } catch (error) {
             console.error('Error fetching response:', error);
             const errorMsg = error.message.includes('404')
                 ? 'API endpoint not found. Please check the API configuration.'
                 : error.message.includes('CORS')
                     ? 'CORS error: API does not allow direct browser requests.'
-                    : 'Terjadi kesalahan saat menghubungi API.';
+                    : 'Terjadi kesalahan{ERR 156}.';
             setError(errorMsg);
 
-            setChatMessages(prev => [
+            setChatMessages((prev) => [
                 ...prev,
                 {
                     id: Date.now().toString(),
@@ -175,7 +130,6 @@ const Chatbot = () => {
     };
 
     const Message = ({ message, isBot }) => (
-
         <div
             className={`px-4 pt-4 pb-2 rounded-xl ${
                 isBot ? 'bg-indigo-500/10 border-indigo-500/20' : 'bg-black/5 border-black/10'
@@ -184,7 +138,7 @@ const Chatbot = () => {
             <div className="flex items-start gap-3">
                 <div
                     className={`p-2 rounded-full ${
-                        isBot ? 'bg-black    text-indigo-300' : 'bg-black/10 text-black/60'
+                        isBot ? 'bg-black text-indigo-300' : 'bg-black/10 text-black/60'
                     } group-hover:bg-opacity-80 transition-colors`}
                 >
                     <UserCircle2 className="w-5 h-5" />
@@ -196,10 +150,7 @@ const Chatbot = () => {
               {formatDate(message.createdAt)}
             </span>
                     </div>
-                    <p
-                        className="text-black/60 text-sm break-words leading-relaxed relative bottom-2"
-                        id={message.content ? undefined : `typing-${message.id}`}
-                    >
+                    <p className="text-black/60 text-sm break-words leading-relaxed relative bottom-2">
                         {message.content}
                     </p>
                 </div>
@@ -227,17 +178,14 @@ const Chatbot = () => {
 
                 <div className="p-6 space-y-6">
                     {error && (
-                        <div
-                            className="flex items-center gap-2 p-4 text-red-400 bg-red-500/10 border border-red-500/20 rounded-xl"
-                            data-aos="fade-in"
-                        >
+                        <div className="flex items-center gap-2 p-4 text-red-400 bg-red-500/10 border border-red-500/20 rounded-xl">
                             <AlertCircle className="w-5 h-5 flex-shrink-0" />
                             <p className="text-sm">{error}</p>
                         </div>
                     )}
 
                     <form onSubmit={handleSubmit} className="space-y-6">
-                        <div className="space-y-2" data-aos="fade-up" data-aos-duration="1200">
+                        <div className="space-y-2">
                             <label className="block text-sm font-medium text-black">
                                 Message <span className="text-red-400">*</span>
                             </label>
@@ -254,8 +202,6 @@ const Chatbot = () => {
                         <button
                             type="submit"
                             disabled={isSubmitting}
-                            data-aos="fade-up"
-                            data-aos-duration="1000"
                             className="relative w-full h-12 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-xl font-medium text-white overflow-hidden group transition-all duration-300 hover:scale-[1.02] hover:shadow-lg active:scale-[0.98] disabled:opacity-50 disabled:hover:scale-100 disabled:cursor-not-allowed"
                         >
                             <div className="absolute inset-0 bg-white/20 translate-y-12 group-hover:translate-y-0 transition-transform duration-300" />
@@ -275,24 +221,15 @@ const Chatbot = () => {
                         </button>
                     </form>
 
-                    <div
-                        className="space-y-4 h-[300px] overflow-y-auto custom-scrollbar"
-                        data-aos="fade-up"
-                        data-aos-delay="200"
-                        id="chat-history"
-                    >
+                    <div className="space-y-4 h-[300px] overflow-y-auto custom-scrollbar" id="chat-history">
                         {chatMessages.length === 0 ? (
-                            <div className="text-center py-8" data-aos="fade-in">
+                            <div className="text-center py-8">
                                 <UserCircle2 className="w-12 h-12 text-indigo-400 mx-auto mb-3 opacity-50" />
                                 <p className="text-gray-400">No messages yet. Ask about Desa Wonokerso!</p>
                             </div>
                         ) : (
                             chatMessages.map((message) => (
-                                <Message
-                                    key={message.id}
-                                    message={message}
-                                    isBot={message.isBot}
-                                />
+                                <Message key={message.id} message={message} isBot={message.isBot} />
                             ))
                         )}
                     </div>
@@ -300,21 +237,21 @@ const Chatbot = () => {
             </div>
 
             <style jsx>{`
-        .custom-scrollbar::-webkit-scrollbar {
-          width: 6px;
-        }
-        .custom-scrollbar::-webkit-scrollbar-track {
-          background: rgba(255, 255, 255, 0.05);
-          border-radius: 6px;
-        }
-        .custom-scrollbar::-webkit-scrollbar-thumb {
-          background: rgba(99, 102, 241, 0.5);
-          border-radius: 6px;
-        }
-        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-          background: rgba(99, 102, 241, 0.7);
-        }
-      `}</style>
+                .custom-scrollbar::-webkit-scrollbar {
+                    width: 6px;
+                }
+                .custom-scrollbar::-webkit-scrollbar-track {
+                    background: rgba(255, 255, 255, 0.05);
+                    border-radius: 6px;
+                }
+                .custom-scrollbar::-webkit-scrollbar-thumb {
+                    background: rgba(99, 102, 241, 0.5);
+                    border-radius: 6px;
+                }
+                .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+                    background: rgba(99, 102, 241, 0.7);
+                }
+            `}</style>
         </div>
     );
 };
