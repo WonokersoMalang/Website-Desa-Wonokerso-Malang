@@ -47,13 +47,12 @@ const Chatbot = () => {
     };
 
     const createContextPrompt = (userMessage) => {
-        let context = "Jawab:\n";
-        for (const [value] of Object.entries(villageData)) {
-            context += `- ${value}\n`;
+        let context = "Jawab:";
+        for (const [key, value] of Object.entries(villageData)) {
+            context += `${key}: ${value}\n`;
         }
-        context += `\n"${userMessage}"\n`;
-        context +=
-            "Jawablah menggunakan informasi yang ada, jika anda tidak mempunyai informasi terkait pertanyaan maka jawab secara umum(boleh diluar konteks asalkan relevan)dalam bahasa Indonesia.";
+        context += `\n"Informasi(jika perlu):${userMessage}"\n`;
+        context += "Buat jawaban atau tanggapi pertanyaan pengguna,gunakan informasi hanya jika dibutuhkan, jika tidak, jawab dengan jawaban yang tepat dan akurat sesuai pertanyaan pengguna.\n";
         return encodeURIComponent(context);
     };
 
@@ -86,7 +85,7 @@ const Chatbot = () => {
                     newMessage
                 )}&style=${contextPrompt}&sessionId=${sessionId}`
             );
-
+                console.log(response);
             if (!response.ok) {
                 throw new Error(`API request failed with status ${response.status}`);
             }

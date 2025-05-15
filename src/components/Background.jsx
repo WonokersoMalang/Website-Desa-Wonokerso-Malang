@@ -45,7 +45,7 @@ const AnimatedBackground = () => {
 
 	return (
 		<div className="fixed inset-0 ">
-			<div className="absolute inset-0">
+			<div className="bg-white  absolute inset-0">
 				<div
 					ref={(ref) => (blobRefs.current[0] = ref)}
 					className="absolute top-0 -left-4 md:w-96 md:h-96 w-72 h-72 bg-purple-500 rounded-full mix-blend-multiply filter blur-[128px] opacity-40 md:opacity-20 "></div>
