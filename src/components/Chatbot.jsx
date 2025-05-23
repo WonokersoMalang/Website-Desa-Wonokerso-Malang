@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { MessageCircle, UserCircle2, Loader2, AlertCircle, Send } from 'lucide-react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import villageData from '../assets/villageData.json';
+import villageData from '/dist/villageData.json';
 
 const Chatbot = () => {
     const [chatMessages, setChatMessages] = useState([]);
